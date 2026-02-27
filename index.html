@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Englisch Trainer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <div class="h-left">
+    <span class="app-title">&#127468;&#127463; Englisch Trainer</span>
+  </div>
+  <div class="h-right">
+    <span class="streak-badge" id="streakBadge">&#128293; 0</span>
+    <span class="score-pill">&#10003; <b id="hCorrect">0</b> &nbsp;&#10007; <b id="hWrong">0</b></span>
+    <button class="btn-ico" id="sndBtn" onclick="toggleSound()" title="Sound">&#128266;</button>
+    <button class="btn-ico" onclick="goStats()" title="Statistiken">&#128202;</button>
+    <button class="btn-back" id="backBtn" onclick="goMenu()">&#8592; Zurueck</button>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div id="prog-wrap"><div id="prog-bar" style="width:0%"></div></div>
+
+<!-- TIMER (Schwierigkeit 2–4) -->
+<div id="timer-wrap"><div id="timer-bar"></div></div>
+
+<!-- ==================== MENU ==================== -->
+<div class="screen active" id="s-menu">
+  <div class="menu-hero">
+    <h1>Englisch Trainer</h1>
+    <p>Wähle einen Lernbereich aus</p>
+  </div>
+
+  <div class="stats-ribbon">
+    <div class="ribbon-item"><div class="rn" id="m-total">0</div><div class="rl">Fragen</div></div>
+    <div class="ribbon-item"><div class="rn" id="m-acc">0%</div><div class="rl">Genauigkeit</div></div>
+    <div class="ribbon-item"><div class="rn" id="m-best">0</div><div class="rl">Beste Serie</div></div>
+  </div>
+
+  <!-- ===== DIFFICULTY PICKER ===== -->
+  <div class="diff-picker" id="diff-picker">
+    <div class="diff-card d1 active" id="dc1" onclick="setDifficulty(1)">
+      <span class="diff-dot">&#129002;</span>
+      <span class="diff-name">Leicht</span>
+      <span class="diff-sub">LG 3 &middot; A2<br>Kein Zeitlimit</span>
+    </div>
+    <div class="diff-card d2" id="dc2" onclick="setDifficulty(2)">
+      <span class="diff-dot">&#129000;</span>
+      <span class="diff-name">Mittel</span>
+      <span class="diff-sub">LG 2 &middot; B1<br>&#9201; 15 Sekunden</span>
+    </div>
+    <div class="diff-card d3" id="dc3" onclick="setDifficulty(3)">
+      <span class="diff-dot">&#128308;</span>
+      <span class="diff-name">Schwer</span>
+      <span class="diff-sub">LG 1 &middot; B1/B2<br>&#9201; 10 Sek &middot; 6 Optionen</span>
+    </div>
+    <div class="diff-card d4 locked" id="dc4" onclick="setDifficulty(4)">
+      <span class="diff-dot">&#128081;</span>
+      <span class="diff-name">Meister</span>
+      <span class="diff-sub">C1/C2<br>&#9201; 8 Sek &middot; 8 Optionen</span>
+      <div class="diff-lock">&#128274; Erreiche 100&#x202F;% in 3 Bereichen auf Stufe&#x202F;3 um freizuschalten!</div>
+      <div class="diff-lock-prog" id="diff-lock-prog">0/3 Bereiche geschafft</div>
+    </div>
+  </div>
+
+  <div class="mode-grid">
+    <div class="mode-card" style="--cc:#7c6ff7" onclick="startMode(1)">
+      <div class="mc-icon">&#9194;&#65039;</div>
+      <span class="mc-badge" id="badge1">82 Verben</span>
+      <h3>Past Simple</h3>
+      <p>Lerne unregelmässige Verben. Hover über das Wort für die deutsche Übersetzung!</p>
+      <div class="hs">Highscore: <b id="hs1">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#3b82f6" onclick="startMode(2)">
+      <div class="mc-icon">&#128292;</div>
+      <span class="mc-badge" id="badge2">50 S&#228;tze</span>
+      <h3>Satzbau</h3>
+      <p>Bringe die Wörter in die richtige Reihenfolge und bilde korrekte Sätze!</p>
+      <div class="hs">Highscore: <b id="hs2">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#22c55e" onclick="startMode(3)">
+      <div class="mc-icon">&#128218;</div>
+      <span class="mc-badge" id="badge3">100 W&#246;rter</span>
+      <h3>Alltagsvokabeln</h3>
+      <p>Essen, Zuhause, Familie, Schule, Körper, Farben, Zahlen, Zeit &#8230; DE &#8644; EN gemischt!</p>
+      <div class="hs">Highscore: <b id="hs3">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#f97316" onclick="startMode(4)">
+      <div class="mc-icon">&#128100;</div>
+      <span class="mc-badge" id="badge4">40 &#220;bungen</span>
+      <h3>Personal Pronouns</h3>
+      <p>Subjekt-, Objekt- und Possessivpronomen in Lückentexten üben.</p>
+      <div class="hs">Highscore: <b id="hs4">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#ec4899" onclick="startMode(5)">
+      <div class="mc-icon">&#128214;</div>
+      <span class="mc-badge">4 Bereiche</span>
+      <h3>Grammatik</h3>
+      <p>Satzbau, Present vs. Past Simple, To be, Kurzantworten.</p>
+      <div class="hs">Highscore: <b id="hs5">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#f59e0b" onclick="startMode(6)">
+      <div class="mc-icon">&#128221;</div>
+      <span class="mc-badge">4 Bereiche</span>
+      <h3>Prüfungsvorbereitung</h3>
+      <p>Sich vorstellen, Familie, Wohnort, Wegbeschreibung.</p>
+      <div class="hs">Highscore: <b id="hs6">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#14b8a6" onclick="startMode(7)">
+      <div class="mc-icon">&#128256;</div>
+      <span class="mc-badge" id="badge7">50 S&#228;tze</span>
+      <h3>Wortsalat</h3>
+      <p>Lies den deutschen Satz, schau dir die gemischten W&#246;rter an und tippe den korrekten englischen Satz ein!</p>
+      <div class="hs">Highscore: <b id="hs7">&#8212;</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODE 1 - PAST SIMPLE ==================== -->
+<div class="screen" id="s-m1">
+  <div class="quiz-head">
+    <h2>Past Simple &#8211; Unregelmässige Verben</h2>
+    <div class="qc" id="m1-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="verb-stage">
+    <div class="verb-label">Infinitiv</div>
+    <div class="verb-word">
+      <span class="vw-text" id="m1-verb">go</span>
+      <div class="tip" id="m1-tip">gehen</div>
+    </div>
+    <div class="verb-hint">&#11014; Hover für deutsche Übersetzung &#127465;&#127466;</div>
+  </div>
+  <div class="ans-grid" id="m1-grid"></div>
+  <div class="fb" id="m1-fb"></div>
+</div>
+
+<!-- ==================== MODE 2 - SATZBAU ==================== -->
+<div class="screen" id="s-m2">
+  <div class="quiz-head">
+    <h2>Satzbau &#8211; Past Simple</h2>
+    <div class="qc" id="m2-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="task-box">
+    <div class="task-label">Übersetze ins Englische:</div>
+    <span id="m2-de">&#8212;</span>
+  </div>
+  <div class="word-bank" id="m2-bank"></div>
+  <div class="sent-area-label">Dein Satz <span style="color:var(--muted)">(Wort klicken zum Entfernen):</span></div>
+  <div class="sent-area" id="m2-area"></div>
+  <div class="sent-controls">
+    <button class="btn btn-sec" onclick="m2Clear()">&#10005; Leeren</button>
+    <button class="btn btn-prime" onclick="m2Check()">Prüfenfen &#10003;</button>
+  </div>
+  <div class="fb" id="m2-fb"></div>
+</div>
+
+<!-- ==================== RESULTS ==================== -->
+<div class="screen" id="s-results">
+  <div class="res-wrap">
+    <div class="res-pct" id="r-pct">100%</div>
+    <div class="res-msg" id="r-msg">Sehr gut!</div>
+    <div class="res-grid">
+      <div class="res-cell g"><div class="rn" id="r-cor">8</div><div class="rl">&#10003; Richtig</div></div>
+      <div class="res-cell r"><div class="rn" id="r-wrg">2</div><div class="rl">&#10007; Falsch</div></div>
+    </div>
+    <div class="res-btns">
+      <button class="btn btn-sec" onclick="goMenu()">&#127968; Menü</button>
+      <button class="btn btn-prime" onclick="playAgain()">&#128260; Nochmal</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== STATS ==================== -->
+<div class="screen" id="s-stats">
+  <div class="quiz-head"><h2>&#128202; Gesamtstatistik</h2></div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="sn" id="st-total">0</div><div class="sl">Fragen gesamt</div></div>
+    <div class="stat-card"><div class="sn" id="st-cor">0</div><div class="sl">Richtig gesamt</div></div>
+    <div class="stat-card"><div class="sn" id="st-acc">0%</div><div class="sl">Gesamtgenauigkeit</div></div>
+    <div class="stat-card"><div class="sn" id="st-str">0</div><div class="sl">Beste Serie &#128293;</div></div>
+  </div>
+  <h3 id="st-hs-head" style="font-size:.9rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em">Highscores</h3>
+  <div class="hs-list">
+    <div class="hs-row"><span>&#9194;&#65039; Past Simple</span><strong id="st-hs1">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128292; Satzbau</span><strong id="st-hs2">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128218; Alltagsvokabeln</span><strong id="st-hs3">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128100; Personal Pronouns</span><strong id="st-hs4">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128214; Grammatik</span><strong id="st-hs5">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128221; Prüfungsvorbereitung</span><strong id="st-hs6">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128256; Wortsalat</span><strong id="st-hs7">&#8212;</strong></div>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center">
+    <button class="btn btn-sec" onclick="resetStats()">&#128465;&#65039; Zurücksetzen</button>
+    <button class="btn btn-prime" onclick="goMenu()">&#127968; Menü</button>
+  </div>
+</div>
+
+<!-- ==================== PLACEHOLDER SCREENS ==================== -->
+<div class="screen" id="s-m3">
+  <div class="quiz-head">
+    <h2>&#128218; Alltagsvokabeln</h2>
+    <div class="qc" id="m3-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="vocab-dir" id="m3-dir">Deutsch &#8594; Englisch</div>
+  <div class="vocab-stage">
+    <div class="vocab-topic-pill" id="m3-topic">Essen</div>
+    <div class="verb-word">
+      <span class="vw-text" id="m3-word">Apfel</span>
+      <div class="tip" id="m3-tip">[&#230;p&#601;l]</div>
+    </div>
+    <div class="verb-hint">&#11014; Hover für Aussprache-Hinweis</div>
+  </div>
+  <div class="ans-grid" id="m3-grid"></div>
+  <div class="fb" id="m3-fb"></div>
+</div>
+<div class="screen" id="s-m4">
+  <div class="quiz-head">
+    <h2>&#128100; Personal Pronouns</h2>
+    <div class="qc" id="m4-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="pron-type-tag" id="m4-type">Subjektpronomen</div>
+  <div class="gap-box" id="m4-gap"><!-- rendered by JS --></div>
+  <div class="ans-grid" id="m4-grid"></div>
+  <div class="fb" id="m4-fb"></div>
+</div>
+<!-- ==================== MODE 5 - GRAMMATIK SUB-AUSWAHL ==================== -->
+<div class="screen" id="s-m5">
+  <div class="quiz-head">
+    <h2>&#128214; Grammatik</h2>
+    <div class="qc">Wähle einen Bereich</div>
+  </div>
+  <div class="sub-grid">
+    <div class="sub-card" onclick="startM5sub('satzbau')">
+      <div class="si">&#128292;</div>
+      <h3>Satzbau</h3>
+      <p>Wortstellung in englischen Sätzen</p>
+    </div>
+    <div class="sub-card" onclick="startM5sub('tenses')">
+      <div class="si">&#9200;&#65039;</div>
+      <h3>Present vs. Past</h3>
+      <p>Die richtige Zeitform wählen</p>
+    </div>
+    <div class="sub-card" onclick="startM5sub('tobe')">
+      <div class="si">&#128101;</div>
+      <h3>To be</h3>
+      <p>am / is / are / was / were</p>
+    </div>
+    <div class="sub-card" onclick="startM5sub('short')">
+      <div class="si">&#128172;</div>
+      <h3>Kurzantworten</h3>
+      <p>Yes, I am. / No, she didn&#39;t.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODE 5 - GRAMMATIK QUIZ ==================== -->
+<div class="screen" id="s-m5q">
+  <div class="quiz-head">
+    <h2 id="m5-title">&#128214; Grammatik</h2>
+    <div class="qc" id="m5-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="gap-box" id="m5-q"></div>
+  <div class="ans-grid" id="m5-grid"></div>
+  <div class="fb" id="m5-fb"></div>
+</div>
+
+<!-- ==================== MODE 6 - PRUEFUNG SUB-AUSWAHL ==================== -->
+<div class="screen" id="s-m6">
+  <div class="quiz-head">
+    <h2>&#128221; Prüfungsvorbereitung</h2>
+    <div class="qc">Wähle einen Bereich</div>
+  </div>
+  <div class="sub-grid">
+    <div class="sub-card amber" onclick="startM6sub('intro')">
+      <div class="si">&#128075;</div>
+      <h3>Sich vorstellen</h3>
+      <p>Name, Alter, Schule, Hobbys</p>
+    </div>
+    <div class="sub-card amber" onclick="startM6sub('family')">
+      <div class="si">&#128106;</div>
+      <h3>Familie</h3>
+      <p>Familienmitglieder beschreiben</p>
+    </div>
+    <div class="sub-card amber" onclick="startM6sub('home')">
+      <div class="si">&#127968;</div>
+      <h3>Wohnort</h3>
+      <p>Haus, Stadt, Wohngegend</p>
+    </div>
+    <div class="sub-card amber" onclick="startM6sub('directions')">
+      <div class="si">&#128205;</div>
+      <h3>Wegbeschreibung</h3>
+      <p>Den Weg erklären</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODE 6 - PRUEFUNG QUIZ ==================== -->
+<div class="screen" id="s-m6q">
+  <div class="quiz-head">
+    <h2 id="m6-title">&#128221; Prüfungsvorbereitung</h2>
+    <div class="qc" id="m6-cnt">Frage 1 von 10</div>
+  </div>
+  <div class="gap-box" id="m6-q"></div>
+  <div class="ans-grid" id="m6-grid"></div>
+  <div class="fb" id="m6-fb"></div>
+</div>
+
+<!-- ==================== MODE 7 - WORTSALAT ==================== -->
+<div class="screen" id="s-m7">
+  <div class="quiz-head">
+    <h2>&#128256; Wortsalat</h2>
+    <div class="qc" id="m7-cnt">Frage 1 von 20</div>
+  </div>
+  <div class="m7-task-box">
+    <div class="task-label">&#127465;&#127466; &#220;bersetze ins Englische:</div>
+    <span id="m7-de">&#8212;</span>
+  </div>
+  <div class="m7-hint-label">&#128161; W&#246;rter in falscher Reihenfolge &ndash; als Hilfe:</div>
+  <div class="m7-word-hints" id="m7-hints"></div>
+  <div class="m7-input-wrap">
+    <input type="text" class="m7-input" id="m7-input"
+           placeholder="Schreibe den korrekten englischen Satz hier..."
+           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+           onkeydown="if(event.key==='Enter') m7Check()">
+  </div>
+  <div class="sent-controls">
+    <button class="btn btn-sec" onclick="m7Clear()">&#10005; Leeren</button>
+    <button class="btn btn-prime" onclick="m7Check()">Pr&#252;fen &#10003;</button>
+  </div>
+  <div class="fb" id="m7-fb"></div>
+</div>
+
+
+<script src="js/data-easy.js"></script>
+<script src="js/data-medium.js"></script>
+<script src="js/data-hard.js"></script>
+<script src="js/data-master.js"></script>
+<script src="js/app.js"></script>
+<script src="js/modes.js"></script>
+</body>
+</html>
