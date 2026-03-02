@@ -1,0 +1,400 @@
+/* ================================================================
+   DATA_MASTER  –  C1/C2-Niveau (Meister/Stufe 4)
+   Ergänzt alle anderen Datensätze, nur bei Schwierigkeit 4.
+   Verben: 12  |  Sätze: 15  |  Vokabeln: 135  |  Pronouns: 4
+   Grammar: 18  |  Exam: 10
+   ================================================================ */
+var DATA_MASTER = {
+
+/* ================================================================
+   VERBS – 12 Phrasal Verbs (C1/C2)
+   ================================================================ */
+VERBS: [
+  {inf:'bring about',  past:'brought about',  de:'herbeiführen / verursachen'},
+  {inf:'carry out',    past:'carried out',     de:'durchführen / ausführen'},
+  {inf:'come across',  past:'came across',     de:'stoßen auf / wirken wie'},
+  {inf:'fall through', past:'fell through',    de:'scheitern / nicht klappen'},
+  {inf:'give up',      past:'gave up',         de:'aufgeben / aufhören'},
+  {inf:'look into',    past:'looked into',     de:'untersuchen / nachforschen'},
+  {inf:'put off',      past:'put off',         de:'verschieben / abschrecken'},
+  {inf:'set out',      past:'set out',         de:'aufbrechen / darlegen'},
+  {inf:'turn down',    past:'turned down',     de:'ablehnen / leiser stellen'},
+  {inf:'make up',      past:'made up',         de:'erfinden / sich versöhnen'},
+  {inf:'get over',     past:'got over',        de:'überwinden / sich erholen von'},
+  {inf:'run out of',   past:'ran out of',      de:'ausgehen / zur Neige gehen'}
+],
+
+/* ================================================================
+   SENTENCES – 15 Sätze (C1/C2: Inversion, Subjunktiv, Cleft, formal)
+   ================================================================ */
+SENTENCES: [
+  /* Bestehende 7 */
+  {words:['Never','before','have','so','many','people','had','access','to','information.'],
+   de:'Noch nie hatten so viele Menschen Zugang zu Informationen.'},
+  {words:['It','is','high','time','the','government','took','action','on','climate','change.'],
+   de:'Es ist höchste Zeit, dass die Regierung beim Klimawandel handelt.'},
+  {words:['What','surprised','me','most','was','the','speed','at','which','things','changed.'],
+   de:'Was mich am meisten überraschte, war die Geschwindigkeit, mit der sich die Dinge änderten.'},
+  {words:['Not','only','did','she','excel','academically,','but','she','also','led','the','debate','team.'],
+   de:'Nicht nur brillierte sie akademisch, sie leitete auch das Debattierteam.'},
+  {words:['Were','the','proposal','to','be','accepted,','the','entire','project','would','need','rethinking.'],
+   de:'Sollte der Vorschlag angenommen werden, müsste das gesamte Projekt neu überdacht werden.'},
+  {words:['Such','was','the','extent','of','the','damage','that','repairs','took','over','a','year.'],
+   de:'Das Ausmaß des Schadens war so groß, dass die Reparaturen über ein Jahr dauerten.'},
+  {words:['Only','when','she','arrived','at','the','station','did','she','realise','she','had','the','wrong','ticket.'],
+   de:'Erst als sie am Bahnhof ankam, merkte sie, dass sie das falsche Ticket hatte.'},
+  /* Neue C1/C2-Sätze */
+  {words:['Under','no','circumstances','should','the','findings','be','disclosed','to','the','public.'],
+   de:'Unter keinen Umständen sollten die Ergebnisse der Öffentlichkeit mitgeteilt werden.'},
+  {words:['Had','the','vaccine','been','developed','earlier,','thousands','of','lives','could','have','been','saved.'],
+   de:'Wäre der Impfstoff früher entwickelt worden, hätten Tausende von Leben gerettet werden können.'},
+  {words:['It','was','not','the','outcome','but','the','process','that','proved','most','valuable.'],
+   de:'Nicht das Ergebnis, sondern der Prozess erwies sich als am wertvollsten.'},
+  {words:['Seldom','has','such','a','complex','issue','been','resolved','so','swiftly.'],
+   de:'Selten wurde ein so komplexes Problem so schnell gelöst.'},
+  {words:['The','phenomenon','of','urban','migration','has','profound','implications','for','city','planning.'],
+   de:'Das Phänomen der Stadtmigration hat tiefgreifende Auswirkungen auf die Stadtplanung.'},
+  {words:['No','sooner','had','the','summit','concluded','than','new','tensions','began','to','emerge.'],
+   de:'Kaum war der Gipfel zu Ende, begannen sich neue Spannungen abzuzeichnen.'},
+  {words:['It','is','imperative','that','all','parties','adhere','to','the','terms','of','the','agreement.'],
+   de:'Es ist unbedingt erforderlich, dass alle Parteien die Bedingungen des Abkommens einhalten.'},
+  {words:['The','extent','to','which','technology','has','transformed','society','cannot','be','overstated.'],
+   de:'Das Ausmaß, in dem die Technologie die Gesellschaft verändert hat, kann nicht überschätzt werden.'}
+],
+
+/* ================================================================
+   VOCAB – 135 Wörter
+   Idiome 30 | Falsche Freunde 20 | Nuancen 8 | C1-Vokabeln 35
+   Wissenschaft 10 | Politik 8 | Wirtschaft 8 | Philosophie 8 | Recht 8
+   Hinweis: accomplish + enormous bereits in data-medium.js
+   ================================================================ */
+VOCAB: [
+
+  /* ── IDIOME (30) ── */
+  {en:'a piece of cake',             de:'ein Kinderspiel / sehr einfach',                                              pron:'', t:'Idiome'},
+  {en:'hit the nail on the head',    de:'den Nagel auf den Kopf treffen',                                              pron:'', t:'Idiome'},
+  {en:'bite the bullet',             de:'in den sauren Apfel beißen (etwas Unangenehmes durchstehen)',                 pron:'', t:'Idiome'},
+  {en:'under the weather',           de:'nicht ganz auf der Höhe / angeschlagen / unwohl',                             pron:'', t:'Idiome'},
+  {en:'the ball is in your court',   de:'du bist am Zug / du musst jetzt entscheiden',                                 pron:'', t:'Idiome'},
+  {en:'beat around the bush',        de:'wie die Katze um den heißen Brei gehen / ausweichen',                         pron:'', t:'Idiome'},
+  {en:'break the ice',               de:'das Eis brechen / eine angespannte Situation auflockern',                      pron:'', t:'Idiome'},
+  {en:'spill the beans',             de:'alles ausplaudern / ein Geheimnis verraten',                                   pron:'', t:'Idiome'},
+  {en:'once in a blue moon',         de:'alle Jubeljahre (einmal) / sehr selten',                                       pron:'', t:'Idiome'},
+  {en:'speak of the devil',          de:'wenn man vom Teufel spricht (erscheint er)',                                    pron:'', t:'Idiome'},
+  {en:'cost an arm and a leg',       de:'ein Vermögen kosten / sehr teuer sein',                                        pron:'', t:'Idiome'},
+  {en:'let the cat out of the bag',  de:'die Katze aus dem Sack lassen / ein Geheimnis ausplaudern',                    pron:'', t:'Idiome'},
+  {en:'burn the midnight oil',       de:'die Nacht durcharbeiten / bis spät in die Nacht arbeiten',                     pron:'', t:'Idiome'},
+  {en:'cut to the chase',            de:'zur Sache kommen / auf den Punkt kommen',                                      pron:'', t:'Idiome'},
+  {en:'get cold feet',               de:'kalte Füße bekommen / einen Rückzieher machen',                                pron:'', t:'Idiome'},
+  {en:'go the extra mile',           de:'sich besonders Mühe geben / mehr als erwartet leisten',                        pron:'', t:'Idiome'},
+  {en:'miss the boat',               de:'den Anschluss verpassen / eine Gelegenheit versäumen',                         pron:'', t:'Idiome'},
+  {en:'pull someone\'s leg',         de:'jemanden auf den Arm nehmen / einen Witz machen',                              pron:'', t:'Idiome'},
+  {en:'ring a bell',                 de:'bekannt vorkommen / eine Erinnerung wecken',                                   pron:'', t:'Idiome'},
+  {en:'see eye to eye',              de:'einer Meinung sein / auf einer Wellenlänge liegen',                             pron:'', t:'Idiome'},
+  {en:'the best of both worlds',     de:'das Beste aus beiden Welten / von zwei Dingen zugleich profitieren',           pron:'', t:'Idiome'},
+  {en:'when pigs fly',               de:'wenn Schweine fliegen / nie im Leben / wird nie passieren',                     pron:'', t:'Idiome'},
+  {en:'a blessing in disguise',      de:'ein Glück im Unglück / etwas Schlechtes, das sich als Segen erweist',          pron:'', t:'Idiome'},
+  {en:'cry over spilt milk',         de:'über vergossene Milch weinen / was vorbei ist, ist vorbei',                    pron:'', t:'Idiome'},
+  {en:'elephant in the room',        de:'das offensichtliche Problem, das niemand ansprechen will',                      pron:'', t:'Idiome'},
+  {en:'food for thought',            de:'Stoff zum Nachdenken / etwas, das zum Nachdenken anregt',                      pron:'', t:'Idiome'},
+  {en:'break a leg',                 de:'Hals- und Beinbruch / viel Glück (vor einem Auftritt)',                        pron:'', t:'Idiome'},
+  {en:'hit the ground running',      de:'sofort durchstarten / gleich voll loslegen',                                   pron:'', t:'Idiome'},
+  {en:'on the fence',                de:'unentschlossen / neutral / zwischen den Stühlen sitzen',                        pron:'', t:'Idiome'},
+  {en:'take it with a grain of salt',de:'mit Vorsicht zu genießen / nicht alles für bare Münze nehmen',                 pron:'', t:'Idiome'},
+
+  /* ── FALSCHE FREUNDE (20) ── */
+  {en:'become',      de:'werden (NICHT: bekommen = to receive/get)',                 pron:'[bɪˈkʌm]',           t:'Falsche Freunde'},
+  {en:'gift',        de:'Geschenk (NICHT: Gift = poison)',                           pron:'[ɡɪft]',             t:'Falsche Freunde'},
+  {en:'brave',       de:'mutig (NICHT: brav = well-behaved)',                        pron:'[breɪv]',            t:'Falsche Freunde'},
+  {en:'eventually',  de:'schließlich/letztendlich (NICHT: eventuell = possibly)',    pron:'[ɪˈventʃuəli]',     t:'Falsche Freunde'},
+  {en:'sensible',    de:'vernünftig (NICHT: sensibel = sensitive)',                  pron:'[ˈsensɪbəl]',        t:'Falsche Freunde'},
+  {en:'sympathetic', de:'mitfühlend (NICHT: sympathisch = likeable)',                pron:'[ˌsɪmpəˈθetɪk]',    t:'Falsche Freunde'},
+  {en:'actual',      de:'tatsächlich/eigentlich (NICHT: aktuell = current)',         pron:'[ˈæktʃuəl]',        t:'Falsche Freunde'},
+  {en:'chef',        de:'Küchenchef (NICHT: Chef = boss/manager)',                   pron:'[ʃef]',              t:'Falsche Freunde'},
+  {en:'fabric',      de:'Stoff/Gewebe (NICHT: Fabrik = factory)',                    pron:'[ˈfæbrɪk]',         t:'Falsche Freunde'},
+  {en:'gymnasium',   de:'Turnhalle (NICHT: Gymnasium = grammar school)',             pron:'[dʒɪmˈneɪziəm]',    t:'Falsche Freunde'},
+  {en:'handy',       de:'praktisch/nützlich (NICHT: Handy = mobile phone)',          pron:'[ˈhændi]',           t:'Falsche Freunde'},
+  {en:'kind',        de:'freundlich/nett (NICHT: Kind = child)',                     pron:'[kaɪnd]',            t:'Falsche Freunde'},
+  {en:'map',         de:'Karte/Landkarte (NICHT: Mappe = folder/briefcase)',         pron:'[mæp]',              t:'Falsche Freunde'},
+  {en:'ordinary',    de:'gewöhnlich/normal (NICHT: ordinär = vulgar)',               pron:'[ˈɔːdɪnəri]',       t:'Falsche Freunde'},
+  {en:'rock',        de:'Fels/Rockmusik (NICHT: Rock = skirt)',                      pron:'[rɒk]',              t:'Falsche Freunde'},
+  {en:'wand',        de:'Zauberstab (NICHT: Wand = wall)',                           pron:'[wɒnd]',             t:'Falsche Freunde'},
+  {en:'brand',       de:'Marke/Handelsmarke (NICHT: Brand = fire)',                  pron:'[brænd]',            t:'Falsche Freunde'},
+  {en:'brief',       de:'kurz / Aktentasche (NICHT: Brief = letter)',                pron:'[briːf]',            t:'Falsche Freunde'},
+  {en:'smoking',     de:'Rauchen (NICHT: Smoking = tuxedo)',                         pron:'[ˈsməʊkɪŋ]',        t:'Falsche Freunde'},
+  {en:'rat',         de:'Ratte / Verräter (NICHT: Rat = advice)',                    pron:'[ræt]',              t:'Falsche Freunde'},
+
+  /* ── NUANCEN (8) ── */
+  {en:'minuscule',   de:'winzig/minimal (viel kleiner als tiny, oft falsch geschrieben)',pron:'[ˈmɪnɪskjuːl]',  t:'Nuancen'},
+  {en:'vast',        de:'riesig/weitläufig (für Gebiete & große Mengen)',              pron:'[vɑːst]',           t:'Nuancen'},
+  {en:'thrilled',    de:'begeistert (stärker als happy/pleased)',                       pron:'[θrɪld]',           t:'Nuancen'},
+  {en:'furious',     de:'wütend (stärker als angry, fast wie livid)',                   pron:'[ˈfjʊəriəs]',      t:'Nuancen'},
+  {en:'exhausted',   de:'erschöpft (stärker als tired, = völlig ausgelaugt)',           pron:'[ɪɡˈzɔːstɪd]',     t:'Nuancen'},
+  {en:'elated',      de:'überglücklich / in Hochstimmung (stärker als thrilled)',       pron:'[ɪˈleɪtɪd]',       t:'Nuancen'},
+  {en:'appalled',    de:'entsetzt (stärker als shocked/horrified)',                      pron:'[əˈpɔːld]',         t:'Nuancen'},
+  {en:'minute',      de:'winzig/minimal (Adj. [maɪˈnjuːt] – nicht die Zeiteinheit!)',  pron:'[maɪˈnjuːt]',       t:'Nuancen'},
+
+  /* ── C1-VOKABELN (35) – Nutzerliste, nicht in easy/medium/hard ── */
+  {en:'alleviate',     de:'lindern / abschwächen / mildern',                           pron:'[əˈliːvieɪt]',      t:'C1-Vokabeln'},
+  {en:'apprehensive',  de:'besorgt / ängstlich / angespannt',                          pron:'[ˌæprɪˈhensɪv]',   t:'C1-Vokabeln'},
+  {en:'arbitrary',     de:'willkürlich / beliebig / eigenmächtig',                      pron:'[ˈɑːbɪtrəri]',     t:'C1-Vokabeln'},
+  {en:'conceive',      de:'sich vorstellen / konzipieren / ausdenken',                  pron:'[kənˈsiːv]',        t:'C1-Vokabeln'},
+  {en:'controversy',   de:'Kontroverse / Streit / Debatte',                             pron:'[ˈkɒntrəvɜːsi]',   t:'C1-Vokabeln'},
+  {en:'deteriorate',   de:'sich verschlechtern / verfallen / abnehmen',                 pron:'[dɪˈtɪəriəreɪt]',  t:'C1-Vokabeln'},
+  {en:'diligent',      de:'fleißig / sorgfältig / gewissenhaft',                        pron:'[ˈdɪlɪdʒənt]',     t:'C1-Vokabeln'},
+  {en:'endeavour',     de:'Bemühung / Bestreben / sich bemühen',                        pron:'[ɪnˈdevər]',        t:'C1-Vokabeln'},
+  {en:'exquisite',     de:'erlesen / exquisit / von höchster Qualität',                 pron:'[ɪkˈskwɪzɪt]',     t:'C1-Vokabeln'},
+  {en:'feasible',      de:'machbar / durchführbar / realisierbar',                      pron:'[ˈfiːzɪbəl]',      t:'C1-Vokabeln'},
+  {en:'genuine',       de:'echt / aufrichtig / authentisch',                             pron:'[ˈdʒenjuɪn]',       t:'C1-Vokabeln'},
+  {en:'gratitude',     de:'Dankbarkeit / Dankgefühl',                                   pron:'[ˈɡrætɪtjuːd]',    t:'C1-Vokabeln'},
+  {en:'hypothesis',    de:'Hypothese / These / Annahme',                                pron:'[haɪˈpɒθɪsɪs]',    t:'C1-Vokabeln'},
+  {en:'implications',  de:'Auswirkungen / Konsequenzen / Implikationen',                pron:'[ˌɪmplɪˈkeɪʃənz]', t:'C1-Vokabeln'},
+  {en:'integrity',     de:'Integrität / Redlichkeit / Unversehrtheit',                  pron:'[ɪnˈteɡrɪti]',     t:'C1-Vokabeln'},
+  {en:'jeopardize',    de:'gefährden / aufs Spiel setzen / riskieren',                  pron:'[ˈdʒepədaɪz]',     t:'C1-Vokabeln'},
+  {en:'negligible',    de:'vernachlässigbar / unbedeutend / minimal',                   pron:'[ˈneɡlɪdʒɪbəl]',   t:'C1-Vokabeln'},
+  {en:'notorious',     de:'berüchtigt / notorisch / bekannt (negativ)',                  pron:'[nəʊˈtɔːriəs]',    t:'C1-Vokabeln'},
+  {en:'obsolete',      de:'veraltet / überholt / nicht mehr gebräuchlich',              pron:'[ˈɒbsəliːt]',       t:'C1-Vokabeln'},
+  {en:'peculiar',      de:'eigenartig / seltsam / merkwürdig',                          pron:'[pɪˈkjuːliər]',    t:'C1-Vokabeln'},
+  {en:'perseverance',  de:'Ausdauer / Beharrlichkeit / Durchhaltevermögen',             pron:'[ˌpɜːsɪˈvɪərəns]', t:'C1-Vokabeln'},
+  {en:'phenomenon',    de:'Phänomen / Erscheinung / Ereignis',                          pron:'[fɪˈnɒmɪnən]',     t:'C1-Vokabeln'},
+  {en:'preliminary',   de:'vorläufig / vorbereitend / einleitend',                      pron:'[prɪˈlɪmɪnəri]',   t:'C1-Vokabeln'},
+  {en:'prevalent',     de:'weit verbreitet / vorherrschend',                             pron:'[ˈprevələnt]',      t:'C1-Vokabeln'},
+  {en:'reluctant',     de:'widerwillig / zögerlich / ungern',                           pron:'[rɪˈlʌktənt]',     t:'C1-Vokabeln'},
+  {en:'resilient',     de:'widerstandsfähig / belastbar / elastisch',                   pron:'[rɪˈzɪliənt]',     t:'C1-Vokabeln'},
+  {en:'scrutiny',      de:'genaue Prüfung / Untersuchung / Kontrolle',                  pron:'[ˈskruːtɪni]',     t:'C1-Vokabeln'},
+  {en:'subtle',        de:'subtil / fein / kaum wahrnehmbar',                           pron:'[ˈsʌtəl]',         t:'C1-Vokabeln'},
+  {en:'substantial',   de:'erheblich / beträchtlich / substanziell',                    pron:'[səbˈstænʃəl]',    t:'C1-Vokabeln'},
+  {en:'thorough',      de:'gründlich / sorgfältig / vollständig',                       pron:'[ˈθʌrə]',          t:'C1-Vokabeln'},
+  {en:'tremendous',    de:'enorm / gewaltig / außerordentlich',                         pron:'[trɪˈmendəs]',     t:'C1-Vokabeln'},
+  {en:'unanimous',     de:'einstimmig / einhellig / ohne Gegenstimme',                  pron:'[juːˈnænɪməs]',    t:'C1-Vokabeln'},
+  {en:'unprecedented', de:'beispiellos / noch nie dagewesen',                           pron:'[ʌnˈpresɪdentɪd]', t:'C1-Vokabeln'},
+  {en:'vulnerable',    de:'verwundbar / anfällig / schutzbedürftig',                    pron:'[ˈvʌlnərəbəl]',   t:'C1-Vokabeln'},
+  {en:'yield',         de:'ergeben / nachgeben / Ertrag (Nomen)',                        pron:'[jiːld]',           t:'C1-Vokabeln'},
+
+  /* ── WISSENSCHAFT (10) ── */
+  {en:'empirical',     de:'empirisch / auf Erfahrung/Beobachtung basierend',             pron:'[ɪmˈpɪrɪkəl]',     t:'Wissenschaft'},
+  {en:'methodology',   de:'Methodik / Vorgehensweise / wissenschaftliche Methode',        pron:'[ˌmeθəˈdɒlədʒi]',  t:'Wissenschaft'},
+  {en:'paradigm',      de:'Paradigma / Denkmuster / Weltanschauung',                      pron:'[ˈpærədaɪm]',      t:'Wissenschaft'},
+  {en:'synthesis',     de:'Synthese / Zusammenführung / Vereinigung',                     pron:'[ˈsɪnθɪsɪs]',      t:'Wissenschaft'},
+  {en:'correlation',   de:'Korrelation / Zusammenhang / Wechselbeziehung',                pron:'[ˌkɒrəˈleɪʃən]',   t:'Wissenschaft'},
+  {en:'specimen',      de:'Probe / Exemplar / Muster / Präparat',                         pron:'[ˈspesɪmɪn]',      t:'Wissenschaft'},
+  {en:'inference',     de:'Schlussfolgerung / Rückschluss / Inferenz',                    pron:'[ˈɪnfərəns]',      t:'Wissenschaft'},
+  {en:'variable',      de:'Variable / veränderliche Größe',                               pron:'[ˈveəriəbəl]',     t:'Wissenschaft'},
+  {en:'theorem',       de:'Theorem / Lehrsatz / Satz (Mathematik/Logik)',                  pron:'[ˈθɪərəm]',        t:'Wissenschaft'},
+  {en:'genome',        de:'Genom / Erbgut / genetisches Material',                         pron:'[ˈdʒiːnəʊm]',      t:'Wissenschaft'},
+
+  /* ── POLITIK (8) ── */
+  {en:'sovereignty',   de:'Souveränität / staatliche Unabhängigkeit',                      pron:'[ˈsɒvrənti]',      t:'Politik'},
+  {en:'referendum',    de:'Volksabstimmung / Referendum',                                   pron:'[ˌrefəˈrendəm]',   t:'Politik'},
+  {en:'constitution',  de:'Verfassung / Grundgesetz / Satzung',                            pron:'[ˌkɒnstɪˈtjuːʃən]',t:'Politik'},
+  {en:'parliament',    de:'Parlament / gesetzgebende Versammlung',                         pron:'[ˈpɑːləmənt]',     t:'Politik'},
+  {en:'coalition',     de:'Koalition / Bündnis / Zusammenschluss',                         pron:'[ˌkəʊəˈlɪʃən]',    t:'Politik'},
+  {en:'mandate',       de:'Mandat / Auftrag / Vollmacht',                                   pron:'[ˈmændeɪt]',       t:'Politik'},
+  {en:'veto',          de:'Veto / Einspruch / Ablehnungsrecht',                             pron:'[ˈviːtəʊ]',        t:'Politik'},
+  {en:'diplomacy',     de:'Diplomatie / diplomatisches Geschick',                           pron:'[dɪˈpləʊməsi]',    t:'Politik'},
+
+  /* ── WIRTSCHAFT (8) ── */
+  {en:'inflation',     de:'Inflation / Preissteigerung',                                    pron:'[ɪnˈfleɪʃən]',     t:'Wirtschaft'},
+  {en:'recession',     de:'Rezession / Wirtschaftsflaute',                                  pron:'[rɪˈseʃən]',       t:'Wirtschaft'},
+  {en:'fiscal',        de:'fiskalisch / steuerlich / haushaltspolitisch',                   pron:'[ˈfɪskəl]',        t:'Wirtschaft'},
+  {en:'deficit',       de:'Defizit / Fehlbetrag / Haushaltsdefizit',                        pron:'[ˈdefɪsɪt]',       t:'Wirtschaft'},
+  {en:'surplus',       de:'Überschuss / Surplus',                                            pron:'[ˈsɜːpləs]',       t:'Wirtschaft'},
+  {en:'equity',        de:'Eigenkapital / Beteiligung / Fairness',                           pron:'[ˈekwɪti]',        t:'Wirtschaft'},
+  {en:'dividend',      de:'Dividende / Gewinnanteil',                                        pron:'[ˈdɪvɪdend]',      t:'Wirtschaft'},
+  {en:'subsidy',       de:'Subvention / staatliche Förderung / Zuschuss',                   pron:'[ˈsʌbsɪdi]',       t:'Wirtschaft'},
+
+  /* ── PHILOSOPHIE (8) ── */
+  {en:'epistemology',  de:'Erkenntnistheorie / Epistemologie',                               pron:'[ɪˌpɪstɪˈmɒlədʒi]', t:'Philosophie'},
+  {en:'ethics',        de:'Ethik / Moralphilosophie',                                        pron:'[ˈeθɪks]',           t:'Philosophie'},
+  {en:'utilitarianism',de:'Utilitarismus / Nützlichkeitsprinzip',                            pron:'[ˌjuːtɪlɪˈteəriənɪzəm]',t:'Philosophie'},
+  {en:'determinism',   de:'Determinismus / Kausalitätsprinzip',                              pron:'[dɪˈtɜːmɪnɪzəm]',   t:'Philosophie'},
+  {en:'existentialism',de:'Existenzialismus',                                                pron:'[ˌeɡzɪˈstenʃəlɪzəm]',t:'Philosophie'},
+  {en:'scepticism',    de:'Skepsis / Zweifel / kritische Haltung',                           pron:'[ˈskeptɪsɪzəm]',    t:'Philosophie'},
+  {en:'dialectic',     de:'Dialektik / Widerspruchslogik',                                   pron:'[ˌdaɪəˈlektɪk]',    t:'Philosophie'},
+  {en:'pragmatism',    de:'Pragmatismus / praktisches Denken',                               pron:'[ˈpræɡmətɪzəm]',    t:'Philosophie'},
+
+  /* ── RECHT (8) ── */
+  {en:'jurisdiction',  de:'Gerichtsbarkeit / Zuständigkeit / Rechtsgebiet',                  pron:'[ˌdʒʊərɪsˈdɪkʃən]', t:'Recht'},
+  {en:'litigation',    de:'Rechtsstreit / Prozessführung',                                    pron:'[ˌlɪtɪˈɡeɪʃən]',    t:'Recht'},
+  {en:'statute',       de:'Gesetz / Statut / gesetzliche Regelung',                          pron:'[ˈstætʃuːt]',        t:'Recht'},
+  {en:'precedent',     de:'Präzedenzfall / Vorentscheidung',                                  pron:'[ˈpresɪdənt]',       t:'Recht'},
+  {en:'verdict',       de:'Urteil / Entscheidung / Befund',                                   pron:'[ˈvɜːdɪkt]',         t:'Recht'},
+  {en:'acquittal',     de:'Freispruch',                                                        pron:'[əˈkwɪtəl]',         t:'Recht'},
+  {en:'prosecution',   de:'Staatsanwaltschaft / Strafverfolgung / Anklage',                   pron:'[ˌprɒsɪˈkjuːʃən]',   t:'Recht'},
+  {en:'defendant',     de:'Angeklagter / Beklagter',                                           pron:'[dɪˈfendənt]',        t:'Recht'}
+],
+
+/* ================================================================
+   PRONOUNS – 4 (formelle Subjekt-/Objekt-/Possessivpronomen)
+   ================================================================ */
+PRONOUNS: [
+  {pre:'I would rather',     post:'come back later.',       ans:'you',  type:'subject',    de:'Ich würde es vorziehen, wenn du später wiederkommst.'},
+  {pre:'It was',             post:'who made the decision.', ans:'I',    type:'subject',    de:'Ich war es, der die Entscheidung traf. (formell: It was I)'},
+  {pre:'He showed',          post:'round the museum.',      ans:'us',   type:'object',     de:'Er führte uns durch das Museum.'},
+  {pre:'She finished',       post:'project ahead of time.', ans:'her',  type:'possessive', de:'Sie beendete ihr Projekt vor dem Zeitplan.'}
+],
+
+/* ================================================================
+   GRAMMAR_QS – 18 Fragen (C1/C2)
+   Themen: Mixed Conditional, Subjunctive, Inversion, Cleft,
+   Phrasal Verbs, Reported Speech Backshift, Wish/If only
+   ================================================================ */
+GRAMMAR_QS: [
+  /* ── Bestehende 7 ── */
+  {sub:'tenses',
+   q:'Subjunctive / Wish:\n"I wish I ___ more time to travel."',
+   opts:['had','have','would have','had had'],
+   ans:0,
+   rule:"Nach 'wish' für Gegenwart: Past Simple. 'I wish I had...' (nicht 'have')."},
+  {sub:'tenses',
+   q:'Inversion:\n"___ did I realise how serious the situation was."',
+   opts:['Only then','Then only','Just then','At that time'],
+   ans:0,
+   rule:"Inversion nach negativen/einschränkenden Adverbien: 'Only then did I...' (Hilfsverb vor Subjekt)."},
+  {sub:'tenses',
+   q:'Wish – Vergangenheit:\n"I wish I ___ harder for the exam."',
+   opts:['had studied','studied','would study','have studied'],
+   ans:0,
+   rule:"Wish + Past Perfect drückt Bedauern über die Vergangenheit aus: I wish I had studied..."},
+  {sub:'tenses',
+   q:'If only:\n"___ she had told me the truth earlier!"',
+   opts:['If only','Only if','Just if','Should'],
+   ans:0,
+   rule:"'If only' = wenn doch nur (stärker als 'I wish'). Gefolgt von Past Perfect für Vergangenheit."},
+  {sub:'satzbau',
+   q:'Cleft Sentence:\n"___ French that she studied at university, not Spanish."',
+   opts:['It was','It is','That was','What was'],
+   ans:0,
+   rule:"Cleft Sentences mit 'It was/is... that...' betonen einen bestimmten Satzteil."},
+  {sub:'satzbau',
+   q:'Inversion (Negativ-Adverbial):\n"Under no circumstances ___ leave this room."',
+   opts:['are you to','you are to','you should','are you'],
+   ans:0,
+   rule:"Inversion nach negativen Ausdrücken: 'Under no circumstances are you to...' Hilfsverb vor Subjekt."},
+  {sub:'satzbau',
+   q:'Nominalphrase:\n"___ surprised everyone was the simplicity of the solution."',
+   opts:['What','That','Which','How'],
+   ans:0,
+   rule:"Noun clause als Subjekt: 'What surprised everyone...' – 'what' leitet eine Nominalphrase ein."},
+  /* ── Mixed Conditionals (2) ── */
+  {sub:'tenses',
+   q:'Mixed Conditional:\n"If I ___ medicine, I would be a doctor now."',
+   opts:['had studied','studied','would study','have studied'],
+   ans:0,
+   rule:"Mixed Conditional: If + Past Perfect (vergangene Bedingung) → would + Infinitiv (Gegenwartsergebnis). Drückt aus, wie die Vergangenheit die Gegenwart beeinflusst."},
+  {sub:'tenses',
+   q:'Mixed Conditional:\n"She ___ here already if she had caught the earlier train."',
+   opts:['would be','would have been','will be','was'],
+   ans:0,
+   rule:"Mixed Conditional Hauptsatz: would + Infinitiv (Gegenwart). NICHT 'would have been' (das wäre reine 3rd Conditional für Vergangenheit)."},
+  /* ── Subjunctive (2) ── */
+  {sub:'satzbau',
+   q:'Formal Subjunctive:\n"The committee insists that he ___ immediately."',
+   opts:['resign','resigns','resigned','has resigned'],
+   ans:0,
+   rule:"Formaler Konjunktiv: nach insist/demand/suggest/recommend + that → bare infinitive (kein -s!). 'He resign' (nicht 'resigns')."},
+  {sub:'satzbau',
+   q:'Subjunctive – Vorschlag:\n"I suggest that every participant ___ a dictionary."',
+   opts:['bring','brings','brought','has brought'],
+   ans:0,
+   rule:"Nach 'suggest/recommend/propose + that': Subjunctive = bare infinitive. 'Every participant bring' (nicht 'brings' – kein -s im Subjunctive!)."},
+  /* ── Advanced Inversion (1) ── */
+  {sub:'tenses',
+   q:'Inversion (No sooner ... than):\n"___ had she sat down than the phone rang."',
+   opts:['No sooner','Not until','Hardly when','As soon as'],
+   ans:0,
+   rule:"'No sooner... than...' = kaum hatte sie sich gesetzt, da... Die Phrase 'No sooner...than' ist idiomatisch korrekt. 'Hardly/Scarcely...when/before' wären alternative Strukturen."},
+  /* ── Phrasal Verbs (2) ── */
+  {sub:'satzbau',
+   q:'Phrasal Verb:\n"He finally came to terms ___ losing his job."',
+   opts:['with','to','for','about'],
+   ans:0,
+   rule:"'Come to terms with something' = sich mit etwas abfinden / etwas akzeptieren. Feste Präposition: WITH."},
+  {sub:'satzbau',
+   q:'Phrasal Verb:\n"We need to come up ___ a better solution quickly."',
+   opts:['with','to','for','at'],
+   ans:0,
+   rule:"'Come up with something' = etwas ausdenken / auf eine Idee kommen. Feste Präposition: WITH."},
+  /* ── Reported Speech Backshift (2) ── */
+  {sub:'tenses',
+   q:'Reported Speech Backshift:\n"She said: \'I will call you tomorrow.\'" →\nShe said she ___ me the following day.',
+   opts:['would call','will call','called','would have called'],
+   ans:0,
+   rule:"Backshift: 'will' → 'would'. 'Tomorrow' → 'the following day'. Reported Speech verschiebt alle Zeitformen eine Stufe zurück."},
+  {sub:'tenses',
+   q:'Reported Speech (Past Perfect):\n"He told me: \'I have been waiting for hours.\'" →\nHe told me he ___.',
+   opts:['had been waiting','was waiting','has been waiting','would be waiting'],
+   ans:0,
+   rule:"Backshift: Present Perfect Continuous → Past Perfect Continuous. 'Have been waiting' → 'had been waiting'."},
+  /* ── Wish / If only – Advanced (2) ── */
+  {sub:'tenses',
+   q:'Wish (Wunsch nach Veränderung):\n"I wish the government ___ more action on climate change."',
+   opts:['would take','took','takes','had taken'],
+   ans:0,
+   rule:"Wish + would + Infinitiv = Wunsch nach Verhaltensänderung (oft Frustration/Kritik). 'Took' (Past Simple) wäre ein Wunsch über die aktuelle Situation, nicht über Verhalten."},
+  {sub:'tenses',
+   q:'If only (Vergangenheit):\n"___ I had known about this opportunity sooner!"',
+   opts:['If only','If just','Only when','Would that'],
+   ans:0,
+   rule:"'If only' leitet einen Wunschsatz ein (stärker als 'I wish'). Mit Past Perfect = Bedauern über die Vergangenheit."}
+],
+
+/* ================================================================
+   EXAM_QS – 10 Prüfungsfragen (C1/C2)
+   ================================================================ */
+EXAM_QS: [
+  /* ── Bestehende 5 ── */
+  {sub:'intro',
+   q:'C1-Formulierung:\n"___ from being an excellent communicator, she is also a skilled negotiator."',
+   opts:['Apart','Except','Besides of','In addition of'],
+   ans:0,
+   rule:"'Apart from' = abgesehen von. Nicht 'except' (schließt aus) oder 'besides of' (falsch)."},
+  {sub:'intro',
+   q:'Akademische Einleitung:\n"The aim of this presentation is to ___ the key findings."',
+   opts:['outline','outlines','outlining','outlined'],
+   ans:0,
+   rule:"Nach 'is to' folgt der Infinitiv: 'is to outline'. Drückt Absicht/Zweck aus."},
+  {sub:'family',
+   q:'Formelle Beschreibung:\n"My grandmother, ___ worked as a nurse for 40 years, retired in 2005."',
+   opts:['who','which','that','whose'],
+   ans:0,
+   rule:"Non-defining relative clause für Personen: immer 'who', nie 'that'. Kommas nicht vergessen!"},
+  {sub:'home',
+   q:'Beschreibung mit Kontrast:\n"The flat is small. ___, it is ideally located in the city centre."',
+   opts:['Nevertheless','Despite','Although','Even though'],
+   ans:0,
+   rule:"'Nevertheless' = nichtsdestotrotz (verbindet zwei Hauptsätze). 'Despite/Although' brauchen andere Struktur."},
+  {sub:'directions',
+   q:'Formelle Wegbeschreibung:\n"You will ___ the town hall on your left-hand side."',
+   opts:['come across','come about','come over','come by'],
+   ans:0,
+   rule:"'Come across' = auf etwas stoßen / etwas sehen. Hier: 'You will come across the town hall...'"},
+  /* ── Neue 5 ── */
+  {sub:'intro',
+   q:'C1 Konnektor:\n"The results were inconclusive; ___, further investigation is required."',
+   opts:['consequently','however','moreover','nonetheless'],
+   ans:0,
+   rule:"'Consequently' (= infolgedessen / deshalb) begründet eine Schlussfolgerung aus dem Vorhergehenden. 'However' zeigt Kontrast, 'moreover' fügt hinzu, 'nonetheless' konzessiv."},
+  {sub:'intro',
+   q:'Distanziertes Passiv:\n"The manuscript ___ to have been written in the 12th century."',
+   opts:['is believed','believes','was believed to','has believed'],
+   ans:0,
+   rule:"Distanziertes Passiv: 'is believed/said/reported to + Infinitiv'. Formell in akademischen und journalistischen Texten."},
+  {sub:'family',
+   q:'Cleft Sentence:\n"It was not until she graduated ___ she realised her true passion."',
+   opts:['that','which','when','what'],
+   ans:0,
+   rule:"'It was not until... that...' = erst als... Feste Cleft-Struktur. NICHT 'when' oder 'which'."},
+  {sub:'home',
+   q:'Defining Relative Clause:\n"The property ___ overlooks the lake is on the market."',
+   opts:['that','who','whom','whose'],
+   ans:0,
+   rule:"Defining relative clause für Sachen: 'that' oder 'which'. 'Who' nur für Personen. 'That' ist in defining clauses üblicher als 'which'."},
+  {sub:'directions',
+   q:'Gerundium nach Präposition:\n"Upon ___ the main road, turn immediately to the right."',
+   opts:['reaching','to reach','reached','reach'],
+   ans:0,
+   rule:"Nach 'upon' folgt das Gerundium (-ing): 'Upon reaching' = wenn Sie ankommen. Sehr formell / schriftlich."}
+]
+
+}; // END DATA_MASTER
