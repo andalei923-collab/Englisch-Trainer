@@ -94,6 +94,15 @@ header {
   70%, 100%{ background: #ef4444; }   /* rot   */
 }
 
+#timer-count {
+  position: fixed; top: 76px; right: 14px;
+  font-size: .7rem; font-weight: 700;
+  z-index: 197; display: none;
+  font-variant-numeric: tabular-nums;
+  transition: color .35s;
+  pointer-events: none;
+}
+
 /* ===================== DIFFICULTY PICKER ===================== */
 .diff-picker {
   display: grid; grid-template-columns: repeat(4, 1fr);
