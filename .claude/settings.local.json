@@ -6,7 +6,8 @@
       "Bash(node:*)",
       "Bash(do:*)",
       "Bash(deno check:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git:*)"
     ]
   }
 }
