@@ -366,15 +366,18 @@ function renderDiffPicker() {
 /* ================================================================
    TIMER  (Schwierigkeit 2–4)
    ================================================================ */
-var _timerTimeout = null;
+var _timerTimeout  = null;
+var _timerInterval = null;
 
-function startTimer(onExpire) {
-  var secs = DIFF_TIME[S.difficulty] || 0;
+function startTimer(onExpire, secOverride) {
+  var base = DIFF_TIME[S.difficulty] || 0;
+  var secs = (base > 0 && secOverride !== undefined) ? secOverride : base;
   stopTimer();
   if (!secs) return;
 
-  var wrap = document.getElementById('timer-wrap');
-  var bar  = document.getElementById('timer-bar');
+  var wrap  = document.getElementById('timer-wrap');
+  var bar   = document.getElementById('timer-bar');
+  var count = document.getElementById('timer-count');
 
   /* Animationen und Transition zurücksetzen */
   bar.style.animation  = 'none';
@@ -388,6 +391,21 @@ function startTimer(onExpire) {
   bar.style.transition = 'width ' + secs + 's linear';
   bar.style.width      = '0%';
 
+  /* Sekunden-Countdown */
+  var remaining = secs;
+  function updateCount() {
+    if (!count) return;
+    count.textContent = remaining + 's';
+    var ratio = remaining / secs;
+    count.style.color = ratio > 0.4 ? '#22c55e' : ratio > 0.3 ? '#f97316' : '#ef4444';
+  }
+  if (count) { count.style.display = 'block'; updateCount(); }
+  _timerInterval = setInterval(function() {
+    remaining--;
+    if (remaining <= 0) { remaining = 0; }
+    updateCount();
+  }, 1000);
+
   _timerTimeout = setTimeout(function() {
     _timerTimeout = null;
     if (!S.answered) onExpire();
@@ -399,10 +417,16 @@ function stopTimer() {
     clearTimeout(_timerTimeout);
     _timerTimeout = null;
   }
-  var wrap = document.getElementById('timer-wrap');
-  var bar  = document.getElementById('timer-bar');
-  if (wrap) wrap.style.display = 'none';
-  if (bar)  { bar.style.animation = 'none'; bar.style.transition = 'none'; }
+  if (_timerInterval !== null) {
+    clearInterval(_timerInterval);
+    _timerInterval = null;
+  }
+  var wrap  = document.getElementById('timer-wrap');
+  var bar   = document.getElementById('timer-bar');
+  var count = document.getElementById('timer-count');
+  if (wrap)  wrap.style.display = 'none';
+  if (bar)   { bar.style.animation = 'none'; bar.style.transition = 'none'; }
+  if (count) count.style.display = 'none';
 }
 
 /* ================================================================

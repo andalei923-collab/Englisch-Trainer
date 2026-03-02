@@ -165,7 +165,7 @@ function loadM2() {
     document.getElementById('m2-area').className = 'sent-area';
     startTimer(function () {
         m2TimerExpire(item);
-    });
+    }, 20);
 }
 
 function m2TimerExpire(item) {
