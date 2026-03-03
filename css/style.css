@@ -133,6 +133,18 @@ header {
 .diff-card.d4.locked { opacity: .5; cursor: default; border-style: dashed; border-color: var(--border); }
 .diff-card.d4.locked .diff-lock      { display: block; }
 .diff-card.d4.locked .diff-lock-prog { display: block; }
+.diff-lock-hint {
+  text-align: center;
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: -14px;
+  margin-bottom: 22px;
+  display: none;
+}
+.diff-card.d4.locked ~ .diff-lock-hint,
+#diff-picker:has(#dc4.locked) + .diff-lock-hint {
+  display: block;
+}
 .diff-card.d4.locked:hover { transform: none; background: var(--bg-card); }
 .diff-card.locked.shake { animation: diffShake .4s ease; }
 @keyframes diffShake {

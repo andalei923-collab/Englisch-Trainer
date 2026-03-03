@@ -68,6 +68,23 @@ function startMode(m) {
         S.items = shuffle(SENTENCES).slice(0, S.total);
         show('s-m7');
         loadM7();
+    } else if (m === 8) {
+        var allMixed = [];
+        VOCAB.forEach(function(v) { allMixed.push({ en: v.en, de: v.de, pron: v.pron || '' }); });
+        VERBS.forEach(function(v) { allMixed.push({ en: v.inf, de: v.de, pron: '' }); });
+        S.items = shuffle(allMixed).slice(0, S.total).map(function(v) {
+            var deToEn = Math.random() < 0.5;
+            return {
+                displayWord: deToEn ? v.de : v.en,
+                correctAns:  deToEn ? v.en : v.de,
+                tip:         deToEn ? v.en : v.de,
+                deToEn:      deToEn,
+                de:          v.de,
+                en:          v.en
+            };
+        });
+        show('s-m8');
+        loadM8();
     }
 }
 
@@ -78,6 +95,10 @@ function playAgain() {
     }
     if (S.mode === 6 && S.submode) {
         startM6sub(S.submode);
+        return;
+    }
+    if (S.mode === 8) {
+        startMode(8);
         return;
     }
     startMode(S.mode);
@@ -652,7 +673,7 @@ function loadM7() {
     }, 80);
     startTimer(function () {
         m7TimerExpire(item);
-    });
+    }, 20);
 }
 
 function m7TimerExpire(item) {
@@ -701,6 +722,75 @@ function m7Check() {
             '\u274C Deine Antwort: \u201E' + given + '\u201C<br>' +
             'Richtig w\u00e4re: <strong>' + correct + '</strong> \u2013 Achte auf die Wortstellung!' +
             '<br><span style="opacity:.8;font-size:.88em">' + item.de + '</span>', true);
+    }
+}
+
+/* ================================================================
+   MODE 8 – VOKABEL-MIX  (VOCAB + VERBS, DE↔EN zufällig)
+   ================================================================ */
+function loadM8() {
+    var item = S.items[S.q];
+    var nOpts = DIFF_OPTS[S.difficulty] || 4;
+
+    document.getElementById('m8-cnt').textContent = 'Frage ' + (S.q + 1) + ' von ' + S.total;
+    document.getElementById('m8-type').textContent = item.deToEn ? 'Deutsch \u2192 Englisch' : 'Englisch \u2192 Deutsch';
+    document.getElementById('m8-word').textContent = item.displayWord;
+    document.getElementById('m8-tip').textContent = item.tip;
+
+    var allPool = [];
+    VOCAB.forEach(function(v) { allPool.push({ en: v.en, de: v.de }); });
+    VERBS.forEach(function(v) { allPool.push({ en: v.inf, de: v.de }); });
+
+    var distractors = shuffle(allPool.filter(function(v) {
+        return (item.deToEn ? v.en : v.de) !== item.correctAns;
+    })).slice(0, nOpts - 1).map(function(v) {
+        return item.deToEn ? v.en : v.de;
+    });
+
+    var opts = shuffle([item.correctAns].concat(distractors));
+    var grid = document.getElementById('m8-grid');
+    grid.className = 'ans-grid' + (nOpts >= 8 ? ' cols4' : nOpts >= 6 ? ' cols3' : '');
+    grid.innerHTML = '';
+    opts.forEach(function(ans) {
+        var b = document.createElement('button');
+        b.className = 'ans-btn';
+        b.textContent = ans;
+        b.addEventListener('click', (function(btn, a) {
+            return function() { m8Pick(btn, a, item); };
+        })(b, ans));
+        grid.appendChild(b);
+    });
+    hideFb('m8-fb');
+    startTimer(function() {
+        onTimerExpire('#m8-grid', item.correctAns, 'm8-fb');
+    }, 20);
+}
+
+function m8Pick(btn, chosen, item) {
+    if (S.answered) return;
+    S.answered = true;
+    stopTimer();
+
+    var correct = item.correctAns;
+    var btns = document.querySelectorAll('#m8-grid .ans-btn');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].disabled = true;
+        if (btns[i].textContent === correct) btns[i].classList.add('correct');
+    }
+
+    if (chosen === correct) {
+        btn.classList.add('correct');
+        onCorrect();
+        showFb('m8-fb', true,
+            '\u2713 Richtig! &nbsp;<span style="opacity:.7">' + item.de + ' = ' + item.en + '</span>');
+        setTimeout(nextQ, 1500);
+    } else {
+        btn.classList.add('wrong');
+        onWrong();
+        var errMsg = item.deToEn
+            ? '\u274C \u201E' + item.de + '\u201C hei\u00dft auf Englisch <strong>' + correct + '</strong>, nicht \u201E' + chosen + '\u201C.'
+            : '\u274C \u201E' + item.en + '\u201C bedeutet auf Deutsch <strong>' + correct + '</strong>, nicht \u201E' + chosen + '\u201C.';
+        showFb('m8-fb', false, errMsg, true);
     }
 }
 

@@ -63,10 +63,11 @@
       <span class="diff-dot">&#128081;</span>
       <span class="diff-name">Meister</span>
       <span class="diff-sub">C1/C2<br>&#9201; 8 Sek &middot; 8 Optionen<br><small>Satzbau: 20 Sek</small></span>
-      <div class="diff-lock">&#128274; Erreiche 100&#x202F;% in 3 Bereichen auf Stufe&#x202F;3 um freizuschalten!</div>
-      <div class="diff-lock-prog" id="diff-lock-prog">0/3 Bereiche geschafft</div>
     </div>
   </div>
+<div class="diff-lock-hint" id="diff-lock-hint">
+  🔒 Meister: <span id="diff-lock-prog">0/3</span> Bereiche geschafft
+</div>
 
   <div class="mode-grid">
     <div class="mode-card" style="--cc:#7c6ff7" onclick="startMode(1)">
@@ -117,6 +118,13 @@
       <h3>Wortsalat</h3>
       <p>Lies den deutschen Satz, schau dir die gemischten W&#246;rter an und tippe den korrekten englischen Satz ein!</p>
       <div class="hs">Highscore: <b id="hs7">&#8212;</b></div>
+    </div>
+    <div class="mode-card" style="--cc:#a855f7" onclick="startMode(8)">
+      <div class="mc-icon">&#128256;</div>
+      <span class="mc-badge" id="badge8">182 W&#246;rter</span>
+      <h3>Vokabel-Mix</h3>
+      <p>Vokabeln und Verben gemischt &ndash; DE &#8644; EN zuf&#228;llig. Hover &#252;ber das Wort f&#252;r die &#220;bersetzung!</p>
+      <div class="hs">Highscore: <b id="hs8">&#8212;</b></div>
     </div>
   </div>
 </div>
@@ -193,6 +201,7 @@
     <div class="hs-row"><span>&#128214; Grammatik</span><strong id="st-hs5">&#8212;</strong></div>
     <div class="hs-row"><span>&#128221; Prüfungsvorbereitung</span><strong id="st-hs6">&#8212;</strong></div>
     <div class="hs-row"><span>&#128256; Wortsalat</span><strong id="st-hs7">&#8212;</strong></div>
+    <div class="hs-row"><span>&#128256; Vokabel-Mix</span><strong id="st-hs8">&#8212;</strong></div>
   </div>
   <div style="display:flex;gap:12px;justify-content:center">
     <button class="btn btn-sec" onclick="resetStats()">&#128465;&#65039; Zurücksetzen</button>
@@ -335,6 +344,24 @@
   <div class="fb" id="m7-fb"></div>
 </div>
 
+
+<!-- ==================== MODE 8 - VOKABEL-MIX ==================== -->
+<div class="screen" id="s-m8">
+  <div class="quiz-head">
+    <h2>&#128256; Vokabel-Mix</h2>
+    <div class="qc" id="m8-cnt">Frage 1 von 20</div>
+  </div>
+  <div class="vocab-dir" id="m8-type">Deutsch &#8594; Englisch</div>
+  <div class="verb-stage">
+    <div class="verb-word">
+      <span class="vw-text" id="m8-word">&#8212;</span>
+      <div class="tip" id="m8-tip">&#8212;</div>
+    </div>
+    <div class="verb-hint">&#11014; Hover f&#252;r &#220;bersetzung</div>
+  </div>
+  <div class="ans-grid" id="m8-grid"></div>
+  <div class="fb" id="m8-fb"></div>
+</div>
 
 <script src="js/data-easy.js?v=2"></script>
 <script src="js/data-medium.js?v=2"></script>

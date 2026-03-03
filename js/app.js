@@ -94,7 +94,7 @@ function loadStore() {
     }
     /* Migration: altes flaches hs {m: null/zahl} → verschachteltes {m: {1..4: null}} */
     if (!d.hs) d.hs = {};
-    for (var _m = 1; _m <= 7; _m++) {
+    for (var _m = 1; _m <= 8; _m++) {
       if (d.hs[_m] === null || typeof d.hs[_m] !== 'object') {
         d.hs[_m] = { 1: null, 2: null, 3: null, 4: null };
       }
@@ -105,7 +105,7 @@ function loadStore() {
 
 function defStore() {
   var hs = {};
-  for (var _m = 1; _m <= 7; _m++) { hs[_m] = { 1: null, 2: null, 3: null, 4: null }; }
+  for (var _m = 1; _m <= 8; _m++) { hs[_m] = { 1: null, 2: null, 3: null, 4: null }; }
   return { total: 0, correct: 0, bestStreak: 0, hs: hs, hard100Modes: [] };
 }
 
@@ -153,7 +153,7 @@ function updateHeader() {
 /* ================================================================
    MENU / STATS REFRESH
    ================================================================ */
-var HS_MAX = { 1: 20, 2: 20, 3: 20, 4: 20, 5: 20, 6: 20, 7: 20 };
+var HS_MAX = { 1: 20, 2: 20, 3: 20, 4: 20, 5: 20, 6: 20, 7: 20, 8: 20 };
 
 function refreshMenu() {
   var d   = loadStore();
@@ -161,7 +161,7 @@ function refreshMenu() {
   document.getElementById('m-total').textContent = d.total;
   document.getElementById('m-acc').textContent   = acc + '%';
   document.getElementById('m-best').textContent  = d.bestStreak;
-  for (var _i = 1; _i <= 7; _i++) {
+  for (var _i = 1; _i <= 8; _i++) {
     var _v = hsVal(d, _i);
     document.getElementById('hs' + _i).textContent = _v !== null ? _v + '/' + HS_MAX[_i] : '\u2014';
   }
@@ -178,7 +178,7 @@ function refreshStats() {
   var _diffNames = { 1: 'Leicht', 2: 'Mittel', 3: 'Schwer', 4: 'Meister' };
   var _hsHead = document.getElementById('st-hs-head');
   if (_hsHead) _hsHead.textContent = 'Highscores \u2013 ' + _diffNames[S.difficulty];
-  for (var _i = 1; _i <= 7; _i++) {
+  for (var _i = 1; _i <= 8; _i++) {
     var _v = hsVal(d, _i);
     document.getElementById('st-hs' + _i).textContent = _v !== null ? _v + '/' + HS_MAX[_i] : '\u2014';
   }
@@ -228,6 +228,7 @@ function nextQ() {
   if (S.mode === 5) loadM5();
   if (S.mode === 6) loadM6();
   if (S.mode === 7) loadM7();
+  if (S.mode === 8) loadM8();
 }
 
 function endRound() {
@@ -352,7 +353,7 @@ function renderDiffPicker() {
   var _progEl = document.getElementById('diff-lock-prog');
   if (_progEl) {
     var _prog = Array.isArray(st.hard100Modes) ? Math.min(st.hard100Modes.length, 3) : 0;
-    _progEl.textContent = _prog + '/3 Bereiche geschafft';
+    _progEl.textContent = _prog + '/3';
   }
 
   /* Badge-Texte der Mode-Karten aktualisieren */
@@ -361,6 +362,7 @@ function renderDiffPicker() {
   var b3 = document.getElementById('badge3'); if (b3) b3.textContent = VOCAB.length      + ' W\u00f6rter';
   var b4 = document.getElementById('badge4'); if (b4) b4.textContent = PRONOUNS.length   + ' \u00dcbungen';
   var b7 = document.getElementById('badge7'); if (b7) b7.textContent = SENTENCES.length  + ' S\u00e4tze';
+  var b8 = document.getElementById('badge8'); if (b8) b8.textContent = (VOCAB.length + VERBS.length) + ' W\u00f6rter';
 }
 
 /* ================================================================
