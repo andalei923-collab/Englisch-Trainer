@@ -187,6 +187,7 @@ function refreshStats() {
 function resetStats() {
   if (!confirm('Alle Statistiken wirklich zur\u00fccksetzen?')) return;
   localStorage.removeItem(STORE_KEY);
+  clearUsedQuestions();
   refreshMenu(); refreshStats();
 }
 
@@ -429,6 +430,81 @@ function stopTimer() {
   if (wrap)  wrap.style.display = 'none';
   if (bar)   { bar.style.animation = 'none'; bar.style.transition = 'none'; }
   if (count) count.style.display = 'none';
+}
+
+/* ================================================================
+   NO-REPEAT  –  smartPick
+   Tracks seen questions per mode/submode/difficulty in localStorage.
+   Prioritises unseen items; resets when all have been seen.
+   ================================================================ */
+var USED_PREFIX = 'engUsed_';
+
+function getUsedKey(mode, sub) {
+  return USED_PREFIX + mode + (sub ? '_' + sub : '') + '_d' + S.difficulty;
+}
+
+function loadUsed(key) {
+  try {
+    var raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
+}
+
+function saveUsed(key, arr) {
+  localStorage.setItem(key, JSON.stringify(arr));
+}
+
+function clearUsedQuestions() {
+  var keys = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var k = localStorage.key(i);
+    if (k && k.indexOf(USED_PREFIX) === 0) keys.push(k);
+  }
+  for (var j = 0; j < keys.length; j++) localStorage.removeItem(keys[j]);
+}
+
+/**
+ * smartPick(pool, count, mode, sub, idFn)
+ *   pool  – full array of items
+ *   count – how many to pick
+ *   mode  – current mode number
+ *   sub   – submode string or null
+ *   idFn  – function(item) returning a unique string id
+ * Returns shuffled array of up to `count` items, preferring unseen.
+ */
+function smartPick(pool, count, mode, sub, idFn) {
+  var key  = getUsedKey(mode, sub);
+  var used = loadUsed(key);
+
+  /* split pool into unseen / seen */
+  var unseen = [], seen = [];
+  for (var i = 0; i < pool.length; i++) {
+    if (used.indexOf(idFn(pool[i])) >= 0) seen.push(pool[i]);
+    else unseen.push(pool[i]);
+  }
+
+  /* if all seen, reset */
+  if (unseen.length === 0) {
+    unseen = pool.slice();
+    seen   = [];
+    used   = [];
+  }
+
+  var picked;
+  if (unseen.length >= count) {
+    picked = shuffle(unseen).slice(0, count);
+  } else {
+    picked = shuffle(unseen).concat(shuffle(seen)).slice(0, count);
+  }
+
+  /* record picked ids */
+  for (var j = 0; j < picked.length; j++) {
+    var pid = idFn(picked[j]);
+    if (used.indexOf(pid) < 0) used.push(pid);
+  }
+  saveUsed(key, used);
+
+  return shuffle(picked);
 }
 
 /* ================================================================

@@ -45,19 +45,19 @@ function startMode(m) {
     updateHeader();
 
     if (m === 1) {
-        S.items = shuffle(VERBS).slice(0, S.total);
+        S.items = smartPick(VERBS, S.total, 1, null, function(v){ return v.inf; });
         show('s-m1');
         loadM1();
     } else if (m === 2) {
-        S.items = shuffle(SENTENCES).slice(0, S.total);
+        S.items = smartPick(SENTENCES, S.total, 2, null, function(v){ return v.words.join(' '); });
         show('s-m2');
         loadM2();
     } else if (m === 3) {
-        S.items = shuffle(VOCAB).slice(0, S.total);
+        S.items = smartPick(VOCAB, S.total, 3, null, function(v){ return v.en; });
         show('s-m3');
         loadM3();
     } else if (m === 4) {
-        S.items = shuffle(PRONOUNS).slice(0, S.total);
+        S.items = smartPick(PRONOUNS, S.total, 4, null, function(v){ return v.pre + '___' + v.post; });
         show('s-m4');
         loadM4();
     } else if (m === 5) {
@@ -65,14 +65,15 @@ function startMode(m) {
     } else if (m === 6) {
         show('s-m6');
     } else if (m === 7) {
-        S.items = shuffle(SENTENCES).slice(0, S.total);
+        S.items = smartPick(SENTENCES, S.total, 7, null, function(v){ return v.words.join(' '); });
         show('s-m7');
         loadM7();
     } else if (m === 8) {
         var allMixed = [];
         VOCAB.forEach(function(v) { allMixed.push({ en: v.en, de: v.de, pron: v.pron || '' }); });
         VERBS.forEach(function(v) { allMixed.push({ en: v.inf, de: v.de, pron: '' }); });
-        S.items = shuffle(allMixed).slice(0, S.total).map(function(v) {
+        var picked = smartPick(allMixed, S.total, 8, null, function(v){ return v.en; });
+        S.items = picked.map(function(v) {
             var deToEn = Math.random() < 0.5;
             return {
                 displayWord: deToEn ? v.de : v.en,
@@ -493,9 +494,8 @@ function startM5sub(sub) {
     S.bestStreak = 0;
     S.answered = false;
     updateHeader();
-    S.items = shuffle(GRAMMAR_QS.filter(function (q) {
-        return q.sub === sub;
-    })).slice(0, S.total);
+    var _m5pool = GRAMMAR_QS.filter(function (q) { return q.sub === sub; });
+    S.items = smartPick(_m5pool, S.total, 5, sub, function(v){ return v.q; });
     S.total = S.items.length;
     document.getElementById('m5-title').textContent = '\uD83D\uDCD6 Grammatik \u2013 ' + (M5_TITLES[sub] || sub);
     show('s-m5q');
@@ -566,7 +566,8 @@ var M6_TITLES = {
     intro: 'Sich vorstellen',
     family: 'Familie',
     home: 'Wohnort',
-    directions: 'Wegbeschreibung'
+    directions: 'Wegbeschreibung',
+    geo: 'Geografie'
 };
 
 function startM6sub(sub) {
@@ -579,9 +580,8 @@ function startM6sub(sub) {
     S.bestStreak = 0;
     S.answered = false;
     updateHeader();
-    S.items = shuffle(EXAM_QS.filter(function (q) {
-        return q.sub === sub;
-    })).slice(0, S.total);
+    var _m6pool = EXAM_QS.filter(function (q) { return q.sub === sub; });
+    S.items = smartPick(_m6pool, S.total, 6, sub, function(v){ return v.q; });
     S.total = S.items.length;
     document.getElementById('m6-title').textContent = '\uD83D\uDDD2\uFE0F Pr\u00fcfung \u2013 ' + (M6_TITLES[sub] || sub);
     show('s-m6q');
@@ -616,7 +616,7 @@ function loadM6() {
     hideFb('m6-fb');
     startTimer(function () {
         onTimerExpire('#m6-grid', correct, 'm6-fb');
-    });
+    }, S.submode === 'geo' ? 20 : undefined);
 }
 
 function m6Pick(btn, chosen, correct, rule) {
